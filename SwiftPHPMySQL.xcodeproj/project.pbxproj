@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E04E5C0228BCF60001BB7AE /* getAllTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E04E5BF228BCF60001BB7AE /* getAllTeamViewController.swift */; };
 		2E885677228A5BA300F6D36E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E885676228A5BA300F6D36E /* AppDelegate.swift */; };
 		2E885679228A5BA300F6D36E /* AddteamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E885678228A5BA300F6D36E /* AddteamViewController.swift */; };
 		2E88567C228A5BA300F6D36E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E88567A228A5BA300F6D36E /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E04E5BF228BCF60001BB7AE /* getAllTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getAllTeamViewController.swift; sourceTree = "<group>"; };
 		2E885673228A5BA300F6D36E /* SwiftPHPMySQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPHPMySQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E885676228A5BA300F6D36E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E885678228A5BA300F6D36E /* AddteamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddteamViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				2E885676228A5BA300F6D36E /* AppDelegate.swift */,
 				2E88568A228AB4AA00F6D36E /* SigninViewController.swift */,
 				2E885678228A5BA300F6D36E /* AddteamViewController.swift */,
+				2E04E5BF228BCF60001BB7AE /* getAllTeamViewController.swift */,
 				2E885688228AABF500F6D36E /* myConstant.swift */,
 				2E88567A228A5BA300F6D36E /* Main.storyboard */,
 				2E88567D228A5BA400F6D36E /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 				2E88568B228AB4AA00F6D36E /* SigninViewController.swift in Sources */,
 				2E885679228A5BA300F6D36E /* AddteamViewController.swift in Sources */,
 				2E885689228AABF500F6D36E /* myConstant.swift in Sources */,
+				2E04E5C0228BCF60001BB7AE /* getAllTeamViewController.swift in Sources */,
 				2E885677228A5BA300F6D36E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
