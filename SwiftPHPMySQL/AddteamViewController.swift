@@ -25,11 +25,13 @@ class ViewController: UIViewController {
 //  Upload data to database - get value from Myconstant
     func saveDataToDatabase(nameTeam: String, memberCount: String) -> Void {
         let myconstant = Myconstant()
-        let urlSendDataPHP: String = myconstant.findURLAddData(nameTeam: TeamName!, memberCount: MemberCount!)
+        let urlSendDataPHP: String = myconstant.findURLAddData(nameTeam: nameTeam, memberCount: memberCount)
+        print("urlSendDataPHP ==> \(urlSendDataPHP)")
+        
 //      Upload Process
         let url = URL(string: urlSendDataPHP)!
         let request = NSMutableURLRequest(url: url) // สร้าง Request รับค่าจาก url
-        let task = URLSession.shared.dataTask(with: request as URLRequest){data, request, error in
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data, request, error in
 //      Check nil Value
             if error != nil {
                 print("Error! Have nil value")
@@ -40,8 +42,8 @@ class ViewController: UIViewController {
                     print("Can Read Data ==> \(String(describing: canReadData))")
                     
 //                  Show Show Alert Success upload or failed upload to database on control panel
-                    let myResponse: String = canReadData! as String
-                    if Bool(myResponse)! {
+                    let myResponse = canReadData
+                    if ((myResponse) != nil){
                         print("Success Upload")
 //                      Process pop (Back to main after add data to database success - จะต้องกำหนดชื่อ indentifier ด้วย)
                         DispatchQueue.main.async {
