@@ -9,13 +9,6 @@
 import UIKit
 
 class getAllTeamViewController: UIViewController {
-//  var explicit
-    var nameteam: String?
-    var membercount: String?
-    
-    @IBOutlet weak var nameTeamTextField: UITextField!
-    @IBOutlet weak var memberCountTextField: UITextField!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
