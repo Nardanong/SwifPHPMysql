@@ -25,8 +25,8 @@ class Myconstant {
     }//findURLAddData
     
 //  Web service get value data from database
-    func findURLGetDataTeam(idteam: String) -> String {
-        let urlGetDataTeam = "http://www.hitachi-tstv.com/test_ios/myWebService/getteams.php?idteam=\(idteam)"
+    func findURLGetDataTeam(datateam: String) -> String {
+        let urlGetDataTeam = "http://www.hitachi-tstv.com/test_ios/myWebService/getteamPickView.php"
         return urlGetDataTeam
     }//findURLGetDataTeam
     
