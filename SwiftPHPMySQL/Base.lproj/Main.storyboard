@@ -52,14 +52,6 @@
                                     <action selector="SavevaluePicker:" destination="HbD-ZY-dXV" eventType="touchUpInside" id="kch-06-0yc"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwl-Xa-aBO">
-                                <rect key="frame" x="47" y="198" width="320" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="HbD-ZY-dXV" id="6fw-JN-k6T"/>
-                                    <outlet property="delegate" destination="HbD-ZY-dXV" id="oIu-vf-zWd"/>
-                                </connections>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -77,7 +69,6 @@
                         <viewLayoutGuide key="safeArea" id="f3d-3Q-zfp"/>
                     </view>
                     <connections>
-                        <outlet property="pickerView" destination="iwl-Xa-aBO" id="MsB-pt-Jhe"/>
                         <outlet property="showSelectValuePickerView" destination="Zxw-70-CFW" id="Vcg-AT-th5"/>
                     </connections>
                 </viewController>

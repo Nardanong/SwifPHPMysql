@@ -8,33 +8,34 @@
 
 import UIKit
 
-class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
     
     var selectValue: String?
     
     @IBOutlet weak var showSelectValuePickerView: UITextField!
-    @IBOutlet weak var pickerView: UIPickerView!
     
-    let team = ["Apple", "Banana", "Tomato", "Corn", "Bean"]
-    
+    var team = ["Apple", "Banana", "Tomato", "Corn", "Bean", "Orange", "Mango", "Mangoteen"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        createPickerView()
+        dismissPickerView()
     }//Main Method
+    
     
 //  Function getValue from database
     func getAndSaveValuepickerView(datas: String) -> Void {
         let myConstant = Myconstant()
-        let urlPickerPHP = myConstant.findURLGetDataTeam(datateam: datas)
-        print("urlPickerViewPHP ==> \(urlPickerPHP)")
+        let urlPHP = myConstant.findURLGetDataTeam(datateam: datas)
+        print("urlPickerViewPHP ==> \(urlPHP)")
         
-        guard let url = URL(string: urlPickerPHP) else {
+        guard let url = URL(string: urlPHP) else {
             return
         }//guard
         
 //    task
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            
             guard let dataResponse = data, error == nil else{
                    print("Have Error")
                 return
@@ -43,7 +44,7 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
             do{
 //              Read json from API
                 let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                print("jsonResponse ==> \(jsonResponse)")
+                print("JSONResponse ==> \(jsonResponse)")
                 
 //               Change json to array
                 guard let jsonArray = jsonResponse as? [[String:Any]] else {
@@ -60,6 +61,7 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
 //              check value from database for json Dictionary
                 let dataTeam: String = jsonDictionary["NameTeam"] as! String
                 print("NameTeam ==> \(dataTeam)")
+                
             }catch let myError{
                 print("Error ==>\(myError)")
                 print("No have team in database")
@@ -87,6 +89,32 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         showSelectValuePickerView.text = team[row]
     }
+    
+    func createPickerView() -> Void {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        
+        showSelectValuePickerView.inputView = pickerView
+        
+    }
+    
+    func dismissPickerView() -> Void {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        showSelectValuePickerView.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+
     
 //  Function  Show Alert
     func showAlert(title: String, message: String) -> Void {
