@@ -95,14 +95,12 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
         pickerView.delegate = self
         
         showSelectValuePickerView.inputView = pickerView
-        
     }
     
     func dismissPickerView() -> Void {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissKeyboard))
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UIInputViewController.dismissKeyboard))
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -113,8 +111,6 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }
-    
-
     
 //  Function  Show Alert
     func showAlert(title: String, message: String) -> Void {
