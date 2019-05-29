@@ -1,4 +1,3 @@
-//
 //  getAllTeamViewController.swift
 //  SwiftPHPMySQL
 //
@@ -14,82 +13,50 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
     
     @IBOutlet weak var showSelectValuePickerView: UITextField!
     
-    var team = ["Apple", "Banana", "Tomato", "Corn", "Bean", "Orange", "Mango", "Mangoteen"]
+// Array
+    var team: [String] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        createPickerView()
-        dismissPickerView()
-    }//Main Method
-    
-    
-//  Function getValue from database
-    func getAndSaveValuepickerView(datas: String) -> Void {
-        let myConstant = Myconstant()
-        let urlPHP = myConstant.findURLGetDataTeam(datateam: datas)
-        print("urlPickerViewPHP ==> \(urlPHP)")
-        
-        guard let url = URL(string: urlPHP) else {
-            return
-        }//guard
-        
-//    task
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            
-            guard let dataResponse = data, error == nil else{
-                   print("Have Error")
-                return
-            }//guard
-            
-            do{
-//              Read json from API
-                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-                print("JSONResponse ==> \(jsonResponse)")
-                
-//               Change json to array
-                guard let jsonArray = jsonResponse as? [[String:Any]] else {
-                    return
-                }//guard
-                print("jsonArray ==> \(jsonArray)")
-                
-//              Value of Dictionary
-                guard let jsonDictionary: Dictionary = jsonArray[0]  else{
-                    return
-                }//guard
-                print("jsonDictionary ==> \(jsonDictionary)")
-                
-//              check value from database for json Dictionary
-                let dataTeam: String = jsonDictionary["NameTeam"] as! String
-                print("NameTeam ==> \(dataTeam)")
-                
-            }catch let myError{
-                print("Error ==>\(myError)")
-                print("No have team in database")
-                DispatchQueue.main.async {
-                    self.showAlert(title: "No Datateam", message: "No have team in database")
-                }//Dis
-            }//catch
+    func getvalues() {
+        //get the values from sql/Json
+        let url = URL(string: "http://www.hitachi-tstv.com/test_ios/myWebService/getteamPickView.php")!
+        let task = URLSession.shared.dataTask(with: url) { (data, _ , error) in
+            if let error = error { print(error); return }
+            print("url ==>\(url)")
+            do {
+                if let jsonResponse = try JSONSerialization.jsonObject(with: data!) as? [[String:Any]] {
+                    self.team = jsonResponse.compactMap{ $0["NameTeam"] as? String }
+                    DispatchQueue.main.async {
+                        self.reloadInputViews()
+                    }
+                    print("jsonResponse \(jsonResponse)")
+                } else { print("JSON is not an array") }
+            } catch { print(error) }
         }//task
         task.resume()
-    }//getAndSaveValuepickerView
+    }//getvalues
     
 //  Picker View Function
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return team[row]
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.team.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return team.count
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let titleRow = (team[row] )
+      return titleRow
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        showSelectValuePickerView.text = team[row]
+        if team.count > 0 && team.count >= row{
+          self.showSelectValuePickerView.text = team[row]
+            print("NameTeam database ==>\(team[row])")
+        }
     }
     
+//  Create UI Picker View
     func createPickerView() -> Void {
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -97,6 +64,7 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
         showSelectValuePickerView.inputView = pickerView
     }
     
+//  Hide UI Picker View when click "Done" Button
     func dismissPickerView() -> Void {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -106,11 +74,11 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
         toolBar.isUserInteractionEnabled = true
         
         showSelectValuePickerView.inputAccessoryView = toolBar
-    }
+    }//dismissPickerView
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
-    }
+    }//dismissKeyboard
     
 //  Function  Show Alert
     func showAlert(title: String, message: String) -> Void {
@@ -132,7 +100,14 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
         return resultCheck!
     }//checkSpace
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        createPickerView()
+        dismissPickerView()
+        getvalues()
+    }//Main Method
     
+//  Save Button
     @IBAction func SavevaluePicker(_ sender: UIButton) {
         selectValue = showSelectValuePickerView.text
         
@@ -144,8 +119,8 @@ class getAllTeamViewController: UIViewController,UIPickerViewDataSource,UIPicker
         }else{
             print("No Space")
 //          Call function Save data to database
-            //function saveDatapicker
-            getAndSaveValuepickerView(datas: selectValue!)
+            //Wait
+            
         }//if
 //   Show Log
         print("Show Log PickerView ==> \(String(describing: selectValue))")
