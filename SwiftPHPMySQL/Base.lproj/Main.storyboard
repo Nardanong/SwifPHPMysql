@@ -52,10 +52,20 @@
                                     <action selector="SavevaluePicker:" destination="HbD-ZY-dXV" eventType="touchUpInside" id="kch-06-0yc"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="HiddenidTeam" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wnq-85-HeH">
+                                <rect key="frame" x="47" y="186" width="249" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="249" id="F2s-Go-aQj"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="R9s-0V-cDI" firstAttribute="centerX" secondItem="CwA-UZ-feP" secondAttribute="centerX" id="AkA-o0-2M1"/>
+                            <constraint firstItem="Wnq-85-HeH" firstAttribute="top" secondItem="Zxw-70-CFW" secondAttribute="bottom" constant="8" id="MBf-a3-W07"/>
                             <constraint firstItem="cSa-Jc-io8" firstAttribute="leading" secondItem="f3d-3Q-zfp" secondAttribute="leading" id="MIo-VA-kGZ"/>
                             <constraint firstItem="Zxw-70-CFW" firstAttribute="top" secondItem="R9s-0V-cDI" secondAttribute="bottom" constant="25" id="PzN-Qi-3ge"/>
                             <constraint firstItem="cSa-Jc-io8" firstAttribute="bottom" secondItem="f3d-3Q-zfp" secondAttribute="bottom" id="U0Z-Y4-nA6"/>
@@ -63,12 +73,14 @@
                             <constraint firstItem="R9s-0V-cDI" firstAttribute="top" secondItem="f3d-3Q-zfp" secondAttribute="top" constant="45" id="eBP-p9-RgH"/>
                             <constraint firstItem="cSa-Jc-io8" firstAttribute="top" secondItem="f3d-3Q-zfp" secondAttribute="top" id="ixh-Ou-psA"/>
                             <constraint firstItem="Zxw-70-CFW" firstAttribute="centerX" secondItem="CwA-UZ-feP" secondAttribute="centerX" constant="-35.5" id="kuF-Kg-g9C"/>
+                            <constraint firstItem="Wnq-85-HeH" firstAttribute="centerX" secondItem="CwA-UZ-feP" secondAttribute="centerX" constant="-35.5" id="mFy-Ce-DLp"/>
                             <constraint firstItem="taw-89-HtM" firstAttribute="top" secondItem="R9s-0V-cDI" secondAttribute="bottom" constant="24" id="pah-Ne-qyd"/>
                             <constraint firstItem="taw-89-HtM" firstAttribute="centerX" secondItem="CwA-UZ-feP" secondAttribute="centerX" constant="128.5" id="wXl-cY-uMN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f3d-3Q-zfp"/>
                     </view>
                     <connections>
+                        <outlet property="hiddenidTeamTextField" destination="Wnq-85-HeH" id="vfP-bt-hG3"/>
                         <outlet property="showSelectValuePickerView" destination="Zxw-70-CFW" id="Vcg-AT-th5"/>
                     </connections>
                 </viewController>
@@ -112,7 +124,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eut-DI-6m3">
                                 <rect key="frame" x="219" y="226" width="116" height="42"/>
@@ -268,6 +280,6 @@
         <image name="Background" width="1000" height="1000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JAH-HZ-Aq2"/>
+        <segue reference="gKL-Gs-Sa2"/>
     </inferredMetricsTieBreakers>
 </document>

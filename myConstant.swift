@@ -13,7 +13,6 @@ class Myconstant {
     
 //  web service recive value from database for check authen
     func fineJSONGetAuthen(user: String) -> String {
-//        let resultAuthen = "http://www.hitachi-tstv.com/test_ios/myWebService/getAuthen.php?username=\(user)"
         let resultAuthen = "http://www.hitachi-tstv.com/test_ios/myWebService/getUserWhereUserPu.php?isAdd=true&username=\(user)"
         return resultAuthen
     }//fineJSONWhereUser
@@ -25,9 +24,8 @@ class Myconstant {
     }//findURLAddData
     
 //  Web service get value data from database
-    func findURLGetDataTeam(datateam: String) -> String {
-        let urlGetDataTeam = "http://www.hitachi-tstv.com/test_ios/myWebService/getteamPickView.php"
-        return urlGetDataTeam
+    func findURLSaveidTeam(idTeam: String) -> String {
+        let urlGetidTeam = "http://www.hitachi-tstv.com/test_ios/myWebService/updateidTeam.php?isAdd=true&idteam=\(idTeam)"
+        return urlGetidTeam
     }//findURLGetDataTeam
-    
 }//My Constant

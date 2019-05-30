@@ -41,7 +41,7 @@ class ViewController: UIViewController {
                     let canReadData = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
                     print("Can Read Data ==> \(String(describing: canReadData))")
                     
-//                  Show Show Alert Success upload or failed upload to database on control panel
+//                  Show Alert Success upload or failed upload to database on control panel
                     let myResponse = canReadData
                     if ((myResponse) != nil){
                         print("Success Upload")
